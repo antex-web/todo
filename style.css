@@ -1613,3 +1613,70 @@ h1 i { color: #fbbf24; }
         order: 1;
     }
 }
+
+
+/* ============================================================
+   MOBILE FIX - TEXT WRAPPING
+   ============================================================ */
+
+/* Fix for task text on mobile */
+.todo-item .task-text {
+    word-break: break-word;      /* Break words, not characters */
+    overflow-wrap: break-word;   /* Alternative for word breaking */
+    white-space: normal;         /* Allow wrapping */
+    flex: 1;
+    min-width: 0;                /* Prevent flex overflow */
+    line-height: 1.4;            /* Better readability */
+}
+
+/* Make sure the todo item doesn't overflow */
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    flex-wrap: nowrap;           /* Keep items in a row */
+    overflow: hidden;            /* Prevent overflow */
+}
+
+/* On mobile, make it more flexible */
+@media (max-width: 500px) {
+    .todo-item {
+        flex-wrap: wrap;         /* Allow wrapping on small screens */
+        gap: 6px;
+        padding: 10px 12px;
+    }
+    
+    .todo-item .task-text {
+        order: 2;
+        flex: 1 1 100%;          /* Take full width on mobile */
+        font-size: 0.9rem;
+        padding: 4px 0;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+    
+    /* Keep checkbox and delete button on the same row */
+    .todo-item .task-checkbox {
+        order: 1;
+    }
+    
+    .todo-item .task-delete {
+        order: 3;
+        margin-left: auto;
+        opacity: 1 !important;   /* Always visible on mobile */
+    }
+    
+    /* Category and date styling on mobile */
+    .todo-item .task-category {
+        order: 2;
+        font-size: 0.65rem;
+        padding: 2px 8px;
+    }
+    
+    .todo-item .task-date {
+        order: 2;
+        font-size: 0.6rem;
+    }
+}
